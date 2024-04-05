@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import racingcar.model.Car;
+
 import java.util.List;
 
 public class OutputView {
@@ -29,7 +31,7 @@ public class OutputView {
     }
 
     private String printEachCarMovement(Car car) {
-        return car.getName() + printPosition(car.getTotalMovement);
+        return car.getName() + printPosition(car.getMovement());
     }
 
     private String printPosition(int movementNumber) {
