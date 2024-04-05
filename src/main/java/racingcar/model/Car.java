@@ -1,10 +1,10 @@
 package racingcar.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import racingcar.util.Validator;
 
-import java.util.List;
-
 public class Car {
+    private final int MIN_FORWARD_REQUIREMENT = 4;
     private final String NAME;
     private int movement;
 
@@ -19,7 +19,24 @@ public class Car {
         return NAME;
     }
 
-    public int getMovement(){
+    public int getMovement() {
         return movement;
     }
+
+    public void setMovement() {
+        if (decideAction()) {
+            movement++;
+        }
+    }
+
+    private boolean decideAction() {
+        int randomNumber = createRandomNumber();
+
+        return randomNumber >= MIN_FORWARD_REQUIREMENT;
+    }
+
+    private int createRandomNumber() {
+        return Randoms.pickNumberInRange(0, 9);
+    }
+
 }
