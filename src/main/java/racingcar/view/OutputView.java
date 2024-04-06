@@ -8,6 +8,14 @@ public class OutputView {
 
     private static final int SOLO_WINNER = 1;
 
+    public void printResultMessage() {
+        System.out.println("실행 결과");
+    }
+
+    public void printNewline() {
+        System.out.println();
+    }
+
     public void printAllCarMovement(List<Car> cars) {
         for (Car car : cars) {
             System.out.println(printEachCarMovement(car));
@@ -18,7 +26,7 @@ public class OutputView {
         StringBuilder nameOfWinnerCars = new StringBuilder();
 
         if (isSoleWinner(winnerCars)) {
-            System.out.println("최종 우승자: " + nameOfWinnerCars);
+            System.out.println("최종 우승자 : " + nameOfWinnerCars.append(winnerCars.get(0).getName()));
             return;
         }
 
@@ -26,21 +34,16 @@ public class OutputView {
             nameOfWinnerCars.append(car.getName()).append(", ");
         }
 
-        nameOfWinnerCars.deleteCharAt(nameOfWinnerCars.length() - 1);
-        System.out.println("최종 우승자: " + nameOfWinnerCars);
+        nameOfWinnerCars.deleteCharAt(nameOfWinnerCars.length() - 2);
+        System.out.println("최종 우승자 : " + nameOfWinnerCars);
     }
 
     private String printEachCarMovement(Car car) {
-        return car.getName() + printPosition(car.getMovement());
+        return car.getName() + " : " + printPosition(car.getMovement());
     }
 
     private String printPosition(int movementNumber) {
-        String totalDash = "";
-
-        for (int i = 0; i <= movementNumber; i++) {
-            totalDash += "-";
-        }
-        return totalDash;
+        return "-".repeat(Math.max(0, movementNumber));
     }
 
     private boolean isSoleWinner(List<Car> winnerCars) {

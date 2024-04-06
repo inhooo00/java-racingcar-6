@@ -6,11 +6,11 @@ import racingcar.util.Validator;
 public class Car {
     private final int MIN_FORWARD_REQUIREMENT = 4;
     private final String NAME;
-    private int movement;
+    private int movement = 0;
 
     public Car(String name) {
-        Validator.checkEmpty(name);
         Validator.checkOverRange(name);
+        Validator.checkSpace(name);
 
         this.NAME = name;
     }

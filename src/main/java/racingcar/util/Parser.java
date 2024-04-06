@@ -6,7 +6,12 @@ import java.util.List;
 
 public class Parser {
 
-    public static List<String> parseCarNames(String input) {
+    public static List<String> parseStringToList(String input) {
         return new ArrayList<>(Arrays.asList(input.split(",")));
     }
+
+    public static int parseNumber(String input) {
+        return Integer.parseInt(input);
+    }
+
 }
