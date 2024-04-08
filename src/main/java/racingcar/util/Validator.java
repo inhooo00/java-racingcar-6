@@ -1,11 +1,15 @@
 package racingcar.util;
 
+import static racingcar.util.ErrorMessage.INPUT_CAR_NAME_BLANK;
+import static racingcar.util.ErrorMessage.INPUT_CAR_NAME_IS_INCORRECT;
+import static racingcar.util.ErrorMessage.INPUT_STRING_DUPLICATE;
+import static racingcar.util.ErrorMessage.INPUT_STRING_NOT_NULL;
+import static racingcar.util.ErrorMessage.INPUT_WRONG_ROUND_NUMBER;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
-
-import static racingcar.util.ErrorMessage.*;
 
 public class Validator {
 
@@ -24,7 +28,7 @@ public class Validator {
     }
 
     public static void checkEmpty(String input) {
-        if (input.isEmpty()) {
+        if (input == null) {
             throw new IllegalArgumentException(INPUT_STRING_NOT_NULL.message);
         }
     }
@@ -79,4 +83,5 @@ public class Validator {
     private static boolean isRightRoundNumber(String input) {
         return Pattern.matches("^[1-9]\\d*$", input);
     }
+
 }

@@ -1,8 +1,7 @@
 package racingcar.view;
 
-import racingcar.model.Car;
-
 import java.util.List;
+import racingcar.model.Car;
 
 public class OutputView {
 

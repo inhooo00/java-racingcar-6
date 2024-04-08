@@ -1,13 +1,14 @@
-package racingcar.Controller;
+package racingcar.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import racingcar.model.Car;
 import racingcar.model.Referee;
 import racingcar.util.Parser;
+import racingcar.util.Random;
 import racingcar.util.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RacingCarGameController {
 
@@ -52,7 +53,7 @@ public class RacingCarGameController {
 
     private void carsMovement(List<Car> cars) {
         for (Car car : cars) {
-            car.setMovement();
+            car.setMovement(Random.createRandomNumber());
         }
     }
 

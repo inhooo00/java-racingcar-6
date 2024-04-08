@@ -1,6 +1,5 @@
 package racingcar.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import racingcar.util.Validator;
 
 public class Car {
@@ -23,20 +22,10 @@ public class Car {
         return movement;
     }
 
-    public void setMovement() {
-        if (decideAction()) {
+    public void setMovement(int number) {
+        if (number >= MIN_FORWARD_REQUIREMENT) {
             movement++;
         }
-    }
-
-    private boolean decideAction() {
-        int randomNumber = createRandomNumber();
-
-        return randomNumber >= MIN_FORWARD_REQUIREMENT;
-    }
-
-    private int createRandomNumber() {
-        return Randoms.pickNumberInRange(0, 9);
     }
 
 }
