@@ -1,12 +1,10 @@
 package racingcar.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
 import racingcar.model.Car;
+import racingcar.model.Cars;
 import racingcar.model.Referee;
-import racingcar.util.Parser;
-import racingcar.util.Random;
-import racingcar.util.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -14,46 +12,34 @@ public class RacingCarGameController {
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-    List<Car> cars = new ArrayList<>();
 
     public void start() {
+
         String inputCarNames = inputView.getCarNames();
 
-        checkInputCarNames(inputCarNames);
-
-        List<String> carNames= Parser.parseStringToList(inputCarNames);
-        System.out.println(carNames);
-
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
+        Cars cars = new Cars(inputCarNames);
 
         Referee referee = new Referee(inputView.getNumberOfRound());
 
         outputView.printNewline();
         outputView.printResultMessage();
 
-        carsMovementProgress(referee);
+        carsMovementProgress(referee, cars);
 
-        outputView.printWinners(referee.judgementWinnerCars(cars));
+        outputView.printWinners(referee.judgementWinnerCars(cars.getCars()));
     }
 
-    private void checkInputCarNames(String inputCarNames) {
-        Validator.checkEmpty(inputCarNames);
-        Validator.checkDuplicate(inputCarNames);
-    }
-
-    private void carsMovementProgress(Referee referee) {
+    private void carsMovementProgress(Referee referee, Cars carsList) {
         for (int i=0; i < referee.getRoundNumber(); i++) {
-            carsMovement(cars);
-            outputView.printAllCarMovement(cars);
+            carsMovement(carsList.getCars());
+            outputView.printAllCarMovement(carsList.getCars());
             outputView.printNewline();
         }
     }
 
     private void carsMovement(List<Car> cars) {
         for (Car car : cars) {
-            car.setMovement(Random.createRandomNumber());
+            car.carMove(Randoms.pickNumberInRange(0, 9));
         }
     }
 
