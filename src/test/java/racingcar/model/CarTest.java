@@ -15,7 +15,7 @@ import racingcar.util.CarValidator;
 public class CarTest extends NsTest {
 
     @Test
-    @DisplayName("차 이름이 5글자 이상일 때")
+    @DisplayName("차 이름이 5글자 이상일 때 예외가 발생한다.")
     void CAR_NAME_MORE_THAN_5_CHARACTERS_EXCEPTIONS_HANDLING() {
         assertThatThrownBy(() -> CarValidator.checkOverRange("자동차입니다"))
                 .isInstanceOf(RuntimeException.class)
@@ -23,7 +23,7 @@ public class CarTest extends NsTest {
     }
 
     @Test
-    @DisplayName("차 이름에 공백만 들어갔을 때")
+    @DisplayName("차 이름에 공백만 들어갔을 때 예외가 발생한다.")
     void CAR_NAME_BLANK_EXCEPTIONS_HANDLING() {
         assertThatThrownBy(() -> CarValidator.checkSpace(" "))
                 .isInstanceOf(RuntimeException.class)
@@ -31,7 +31,7 @@ public class CarTest extends NsTest {
     }
 
     @Test
-    @DisplayName("차 이름이 안 들어갔을 때")
+    @DisplayName("차 이름이 안 들어갔을 때 예외가 발생한다.")
     void CAR_NAME_NULL_EXCEPTIONS_HANDLING() {
         assertThatThrownBy(() -> CarValidator.checkEmpty(null))
                 .isInstanceOf(RuntimeException.class)
@@ -39,7 +39,7 @@ public class CarTest extends NsTest {
     }
 
     @Test
-    @DisplayName("차 이름이 겹칠 때")
+    @DisplayName("차 이름이 겹칠 때 예외가 발생한다.")
     void CAR_NAMES_OVERLAP_EXCEPTIONS_HANDLING() {
         assertThatThrownBy(() -> CarValidator.checkDuplicate("인호,인호"))
                 .isInstanceOf(RuntimeException.class)

@@ -2,7 +2,6 @@ package racingcar.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.util.Parser;
 import racingcar.util.RefereeValidator;
 import racingcar.util.CarValidator;
 
@@ -17,7 +16,7 @@ public class Referee {
     }
 
     public int getRoundNumber() {
-        return Parser.parseNumber(roundNumber);
+        return Integer.parseInt(roundNumber);
     }
 
     public List<Car> judgementWinnerCars(List<Car> cars) {

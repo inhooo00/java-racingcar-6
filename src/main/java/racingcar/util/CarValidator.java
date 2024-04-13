@@ -4,13 +4,13 @@ import static racingcar.util.ErrorMessage.INPUT_CAR_NAME_BLANK;
 import static racingcar.util.ErrorMessage.INPUT_CAR_NAME_IS_INCORRECT;
 import static racingcar.util.ErrorMessage.INPUT_STRING_DUPLICATE;
 import static racingcar.util.ErrorMessage.INPUT_STRING_NOT_NULL;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
 public class CarValidator {
-
     private static final int MAX_DIGIT_CAR_NAME = 5;
     private static final int MIN_DIGIT_CAR_NAME = 1;
 
@@ -39,12 +39,12 @@ public class CarValidator {
     }
 
     private static boolean hasDuplicateCarName(String input) {
-        List<String> allCarNames = Parser.parseStringToList(input);
+        List<String> allCarNames = Arrays.asList(input.split(","));
         Set set = new HashSet(allCarNames);
 
         return allCarNames.size() != set.size();
     }
-    
+
     private static boolean isOverRange(String input) {
         return MAX_DIGIT_CAR_NAME < input.length();
     }

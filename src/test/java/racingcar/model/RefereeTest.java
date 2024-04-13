@@ -21,7 +21,7 @@ public class RefereeTest extends NsTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "1.1", "abc", ""})
-    @DisplayName("라운드 횟수 범위에 맞지 않는 숫자 예외 처리")
+    @DisplayName("라운드 횟수 범위에 맞지 않는 숫자면 예외가 발생한다.")
     void NUMBER_ROUNDS_RANGE_EXCEPTION_HANDLING(String input) {
         assertThatThrownBy(() -> RefereeValidator.checkRoundNumber(input))
                 .isInstanceOf(RuntimeException.class)
@@ -29,7 +29,7 @@ public class RefereeTest extends NsTest {
     }
 
     @Test
-    @DisplayName("라운드 횟수 NULL 예외 처리")
+    @DisplayName("라운드 횟수 NULL이면 예외가 발생한다.")
     void NUMBER_ROUNDS_COUNT_EXCEPTIONS_HANDLING() {
         assertThatThrownBy(() -> CarValidator.checkEmpty(null))
                 .isInstanceOf(RuntimeException.class)

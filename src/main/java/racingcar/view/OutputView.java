@@ -1,10 +1,11 @@
 package racingcar.view;
 
 import java.util.List;
+
+import racingcar.dto.CarNameDto;
 import racingcar.model.Car;
 
 public class OutputView {
-
     private static final int SOLO_WINNER = 1;
     private static final int LAST_COMMA_COUNT = 2;
 
@@ -22,7 +23,7 @@ public class OutputView {
         }
     }
 
-    public void printWinners(List<Car> winnerCars) {
+    public void printWinners(List<CarNameDto> winnerCars) {
         StringBuilder nameOfWinnerCars = new StringBuilder();
 
         if (isSoleWinner(winnerCars)) {
@@ -31,7 +32,7 @@ public class OutputView {
             return;
         }
 
-        for (Car car : winnerCars) {
+        for (CarNameDto car : winnerCars) {
             nameOfWinnerCars.append(car.getName()).append(", ");
         }
 
@@ -47,7 +48,7 @@ public class OutputView {
         return "-".repeat(Math.max(0, movementNumber));
     }
 
-    private boolean isSoleWinner(List<Car> winnerCars) {
+    private boolean isSoleWinner(List<CarNameDto> winnerCars) {
         return winnerCars.size() == SOLO_WINNER;
     }
 

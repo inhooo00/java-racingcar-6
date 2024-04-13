@@ -3,19 +3,19 @@ package racingcar.model;
 import racingcar.util.CarValidator;
 
 public class Car {
-    private final int MIN_FORWARD_REQUIREMENT = 4;
-    private final String NAME;
+    private static final int MIN_FORWARD_REQUIREMENT = 4;
+    private String name;
     private int move = 0;
 
     public Car(String name) {
         CarValidator.checkOverRange(name);
         CarValidator.checkSpace(name);
 
-        this.NAME = name;
+        this.name = name;
     }
 
     public String getName() {
-        return NAME;
+        return name;
     }
 
     public int getMove() {
