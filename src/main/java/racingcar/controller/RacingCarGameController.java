@@ -6,6 +6,8 @@ import racingcar.model.Cars;
 import racingcar.model.Referee;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
+
+import java.util.Arrays;
 import java.util.List;
 
 public class RacingCarGameController {
@@ -16,7 +18,7 @@ public class RacingCarGameController {
     public void start() {
         String inputCarNames = inputView.getCarNames();
 
-        Cars cars = new Cars(inputCarNames);
+        Cars cars = new Cars(inputCarNamesToList(inputCarNames));
 
         Referee referee = new Referee(inputView.getNumberOfRound());
 
@@ -43,4 +45,8 @@ public class RacingCarGameController {
         }
     }
 
+    private List<String> inputCarNamesToList(String input) {
+        List<String> carNames = Arrays.asList(input.split(","));
+        return carNames;
+    }
 }

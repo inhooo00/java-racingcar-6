@@ -12,11 +12,14 @@ import org.junit.jupiter.api.Test;
 import racingcar.Application;
 import racingcar.util.CarValidator;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class CarTest extends NsTest {
 
     @Test
     @DisplayName("차 이름이 5글자 이상일 때 예외가 발생한다.")
-    void CAR_NAME_MORE_THAN_5_CHARACTERS_EXCEPTIONS_HANDLING() {
+    void carNameMoreThan5CharactersExceptionsHandling() {
         assertThatThrownBy(() -> CarValidator.checkOverRange("자동차입니다"))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage(INPUT_CAR_NAME_IS_INCORRECT.message);
@@ -24,7 +27,7 @@ public class CarTest extends NsTest {
 
     @Test
     @DisplayName("차 이름에 공백만 들어갔을 때 예외가 발생한다.")
-    void CAR_NAME_BLANK_EXCEPTIONS_HANDLING() {
+    void carNameBlankExceptionHandling() {
         assertThatThrownBy(() -> CarValidator.checkSpace(" "))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage(INPUT_CAR_NAME_BLANK.message);
@@ -32,23 +35,24 @@ public class CarTest extends NsTest {
 
     @Test
     @DisplayName("차 이름이 안 들어갔을 때 예외가 발생한다.")
-    void CAR_NAME_NULL_EXCEPTIONS_HANDLING() {
-        assertThatThrownBy(() -> CarValidator.checkEmpty(null))
+    void carNameNullExceptionsHandling() {
+        assertThatThrownBy(() -> CarValidator.checkEmpty((String) null))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage(INPUT_STRING_NOT_NULL.message);
     }
 
     @Test
     @DisplayName("차 이름이 겹칠 때 예외가 발생한다.")
-    void CAR_NAMES_OVERLAP_EXCEPTIONS_HANDLING() {
-        assertThatThrownBy(() -> CarValidator.checkDuplicate("인호,인호"))
+    void carNamesOverlapExceptionsHandling() {
+        List<String> carNames = Arrays.asList("인호", "인호");
+        assertThatThrownBy(() -> CarValidator.checkDuplicate(carNames))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage(INPUT_STRING_DUPLICATE.message);
     }
 
     @Test
     @DisplayName("랜덤 값이 4 이상이면 1 전진")
-    void CAR_MOVE() {
+    void carMove() {
         // given
         Car car = new Car("test");
 
@@ -61,7 +65,7 @@ public class CarTest extends NsTest {
 
     @Test
     @DisplayName("랜덤 값이 4 미만이면 멈춤")
-    void CAR_STOP() {
+    void carStop() {
         // given
         Car car = new Car("test");
 

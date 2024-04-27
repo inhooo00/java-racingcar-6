@@ -9,7 +9,7 @@ import java.util.List;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(String input) {
+    public Cars(List<String> input) {
         this.cars = new ArrayList<>();
         checkInputCarNames(input);
         addCars(input);
@@ -25,14 +25,13 @@ public class Cars {
         }
     }
 
-    private void checkInputCarNames(String input) {
+    private void checkInputCarNames(List<String> input) {
         CarValidator.checkEmpty(input);
         CarValidator.checkDuplicate(input);
     }
 
-    private void addCars(String input) {
-        List<String> carNames = Arrays.asList(input.split(","));
-        for (String carName : carNames) {
+    private void addCars(List<String> names) {
+        for (String carName : names) {
             this.cars.add(new Car(carName));
         }
     }

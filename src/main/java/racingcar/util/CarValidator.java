@@ -14,7 +14,7 @@ public class CarValidator {
     private static final int MAX_DIGIT_CAR_NAME = 5;
     private static final int MIN_DIGIT_CAR_NAME = 1;
 
-    public static void checkDuplicate(String input) {
+    public static void checkDuplicate(List<String> input) {
         if (hasDuplicateCarName(input)) {
             throw new IllegalArgumentException(INPUT_STRING_DUPLICATE.message);
         }
@@ -26,6 +26,11 @@ public class CarValidator {
         }
     }
 
+    public static void checkEmpty(List<String> input) {
+        if (input == null) {
+            throw new IllegalArgumentException(INPUT_STRING_NOT_NULL.message);
+        }
+    }
     public static void checkOverRange(String input) {
         if (isOverRange(input) || isUnderRange(input)) {
             throw new IllegalArgumentException(INPUT_CAR_NAME_IS_INCORRECT.message);
@@ -38,11 +43,10 @@ public class CarValidator {
         }
     }
 
-    private static boolean hasDuplicateCarName(String input) {
-        List<String> allCarNames = Arrays.asList(input.split(","));
-        Set set = new HashSet(allCarNames);
+    private static boolean hasDuplicateCarName(List<String> input) {
+        Set set = new HashSet(input);
 
-        return allCarNames.size() != set.size();
+        return input.size() != set.size();
     }
 
     private static boolean isOverRange(String input) {

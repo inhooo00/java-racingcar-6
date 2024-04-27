@@ -22,7 +22,7 @@ public class RefereeTest extends NsTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "1.1", "abc", ""})
     @DisplayName("라운드 횟수 범위에 맞지 않는 숫자면 예외가 발생한다.")
-    void NUMBER_ROUNDS_RANGE_EXCEPTION_HANDLING(String input) {
+    void numberRoundsRangeExceptionHandling(String input) {
         assertThatThrownBy(() -> RefereeValidator.checkRoundNumber(input))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage(INPUT_WRONG_ROUND_NUMBER.message);
@@ -30,15 +30,15 @@ public class RefereeTest extends NsTest {
 
     @Test
     @DisplayName("라운드 횟수 NULL이면 예외가 발생한다.")
-    void NUMBER_ROUNDS_COUNT_EXCEPTIONS_HANDLING() {
-        assertThatThrownBy(() -> CarValidator.checkEmpty(null))
+    void numberRoundsCountExceptionsHandling() {
+        assertThatThrownBy(() -> CarValidator.checkEmpty((String) null))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage(INPUT_STRING_NOT_NULL.message);
     }
 
     @Test
     @DisplayName("우승자 판단")
-    void JUDGMENT_WINNER() {
+    void judgmentWinner() {
         // given (주어진 값)
         List<Car> cars = new ArrayList<>();
         cars.add(new Car("소정"));
