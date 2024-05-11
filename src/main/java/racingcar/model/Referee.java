@@ -19,15 +19,14 @@ public class Referee {
         return Integer.parseInt(roundNumber);
     }
 
-    public List<Car> judgementWinnerCars(List<Car> cars) {
-        int maxMovement = cars.stream()
+    public List<Car> judgementWinnerCars(Cars cars) {
+        int maxMove = cars.getCars().stream()
                 .mapToInt(Car::getMove)
                 .max()
                 .orElseThrow(() -> new IllegalArgumentException("자동차 목록이 비어 있습니다."));
 
-        return cars.stream()
-                .filter(car -> car.getMove() == maxMovement)
+        return cars.getCars().stream()
+                .filter(car -> car.getMove() == maxMove)
                 .collect(Collectors.toList());
     }
-
 }

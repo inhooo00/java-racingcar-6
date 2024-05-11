@@ -27,14 +27,20 @@ public class RacingCarGameController {
 
         carsMovementProgress(referee, cars);
 
-        List<Car> winnercarNamesList = referee.judgementWinnerCars(cars.getCars());
+        printWinningCars(cars, referee);
+    }
 
-        List<CarNameDto> winnerCarNames = winnercarNamesList.stream()
+    private void printWinningCars(Cars cars, Referee referee) {
+        List<Car> winnerCarsList = referee.judgementWinnerCars(cars);
+        List<CarNameDto> winnerCarNames = convertToCarNameDtos(winnerCarsList);
+        outputView.printWinners(winnerCarNames);
+    }
+
+    private List<CarNameDto> convertToCarNameDtos(List<Car> cars) {
+        return cars.stream()
                 .map(Car::getName)
                 .map(CarNameDto::of)
                 .toList();
-
-        outputView.printWinners(winnerCarNames);
     }
 
     private void carsMovementProgress(Referee referee, Cars carsList) {
@@ -46,7 +52,6 @@ public class RacingCarGameController {
     }
 
     private List<String> inputCarNamesToList(String input) {
-        List<String> carNames = Arrays.asList(input.split(","));
-        return carNames;
+        return Arrays.asList(input.split(","));
     }
 }
