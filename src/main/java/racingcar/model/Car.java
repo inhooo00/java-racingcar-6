@@ -4,18 +4,18 @@ import racingcar.util.CarValidator;
 
 public class Car {
     private static final int MIN_FORWARD_REQUIREMENT = 4;
-    private String name;
+    private static String Name;
     private int move = 0;
 
     public Car(String name) {
         CarValidator.checkOverRange(name);
         CarValidator.checkSpace(name);
 
-        this.name = name;
+        this.Name = name;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public int getMove() {
